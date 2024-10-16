@@ -1,14 +1,12 @@
 # ntry
 
-An elegant, zero-dependency, and type-safe library for superior error handling in TypeScript.
-
 [![npm](https://img.shields.io/npm/v/ntry)](https://www.npmjs.com/package/ntry)
-[![License](https://img.shields.io/npm/l/ntry)](LICENSE)
+[![License](https://img.shields.io/npm/l/ntry)](MIT)
 [![TypeScript](https://img.shields.io/badge/language-typescript-blue)](https://www.typescriptlang.org/)
 
 ## Overview
 
-**ntry** revolutionizes your error handling by simplifying asynchronous operations. Eliminate cumbersome try-catch blocks and embrace a cleaner, more readable approach.
+**ntry** An elegant, zero-dependency, and type-safe library for superior error handling in TypeScript.. Eliminate cumbersome try-catch blocks and embrace a cleaner, more readable approach.
 
 ## Key Features
 
@@ -53,6 +51,25 @@ async function fetchData() {
 ### Using ntry
 
 ```typescript
+import { catchError } from "ntry";
+
+async function fetchData() {
+  const [err, data] = await catchError(someAsyncFunction());
+
+  if (err) {
+    // Handle error gracefully
+    console.error("An error occurred:", err);
+    return;
+  }
+
+  // Continue with data processing
+  console.log("Data received:", data);
+}
+```
+
+### Using ntry with typesafe custom errors
+
+```typescript
 import { catchErrorTyped } from "ntry";
 
 async function fetchData() {
@@ -68,48 +85,6 @@ async function fetchData() {
 
   // Continue processing data
   console.log("Data:", data);
-}
-```
-
-## Getting Started
-
-### catchErrorTyped
-
-```typescript
-import { catchErrorTyped } from "ntry";
-
-async function fetchData() {
-  const [err, data] = await catchErrorTyped(someAsyncFunction(), [
-    SpecificError,
-  ]);
-
-  if (err) {
-    // err is guaranteed to be an instance of SpecificError
-    console.error("Specific error:", err.message);
-    return;
-  }
-
-  // Proceed with data
-  console.log("Data received:", data);
-}
-```
-
-### catchError
-
-```typescript
-import { catchError } from "ntry";
-
-async function fetchData() {
-  const [err, data] = await catchError(someAsyncFunction());
-
-  if (err) {
-    // Handle error gracefully
-    console.error("An error occurred:", err);
-    return;
-  }
-
-  // Continue with data processing
-  console.log("Data received:", data);
 }
 ```
 

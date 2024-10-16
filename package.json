@@ -7,10 +7,15 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.mts",
       "default": "./dist/index.js"
+    },
+    "./plugins": {
+      "import": "./dist/plugins/index.js",
+      "types": "./dist/plugins/index.d.mts",
+      "default": "./dist/plugins/index.js"
     }
   },
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts src/plugins/index.ts --format cjs,esm --dts",
     "lint": "eslint",
     "clean": "rimraf dist",
     "release": "semantic-release"
